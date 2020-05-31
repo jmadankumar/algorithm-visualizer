@@ -4,7 +4,7 @@ import { graphql, Link } from 'gatsby';
 export default function Home({ data }: { data: any }) {
   console.log(data)
   return (
-    <div>
+    <div className="bg-blue-500">
       <div>{data.site.siteMetadata.title}</div>
     </div>
   )

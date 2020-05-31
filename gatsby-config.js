@@ -11,6 +11,7 @@ module.exports = {
     description: "Algorithm Visualizer app built with react & gatsby",
   },
   plugins: [
+    'gatsby-plugin-postcss',
     {
       resolve: "gatsby-source-filesystem",
       options: {
