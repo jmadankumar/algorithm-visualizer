@@ -20,5 +20,14 @@ module.exports = {
       },
     },
     "gatsby-transformer-remark",
+    'gatsby-plugin-top-layout',
+    {
+      resolve: 'gatsby-plugin-material-ui',
+      options: {
+        stylesProvider: {
+          injectFirst: true
+        }
+      }
+    }
   ],
 }
