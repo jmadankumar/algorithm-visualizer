@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "algorithm-visualizer",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "Algorithm visualizer app built with React and Gatsby",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -19,6 +19,12 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@types/node": "^14.0.6",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "gatsby-plugin-typescript": "^2.4.3",
+    "gatsby-source-filesystem": "^2.3.8",
+    "gatsby-transformer-remark": "^2.8.13",
     "prettier": "2.0.5"
   },
   "repository": {
