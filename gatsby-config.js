@@ -11,7 +11,6 @@ module.exports = {
     description: "Algorithm Visualizer app built with react & gatsby",
   },
   plugins: [
-    "gatsby-plugin-typescript",
     {
       resolve: "gatsby-source-filesystem",
       options: {

@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/Layout"
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export default function BlogPost({ data }: { data: any }) {
   const post = data.markdownRemark
@@ -14,17 +14,17 @@ export default function BlogPost({ data }: { data: any }) {
   )
 }
 
-export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      fields {
-        slug
-      }
-      html
-      frontmatter {
-        title
-        date
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query($slug: String!) {
+//     markdownRemark(fields: { slug: { eq: $slug } }) {
+//       fields {
+//         slug
+//       }
+//       html
+//       frontmatter {
+//         title
+//         date
+//       }
+//     }
+//   }
+// `
