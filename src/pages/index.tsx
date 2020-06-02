@@ -1,74 +1,76 @@
-import React, { ReactNode } from "react"
+import React, { ReactNode, useState } from "react"
 import Layout from "../components/Layout";
 import Header from "../components/Header";
-import { TextField, Card, CardActionArea, CardMedia ,CardContent} from '@material-ui/core';
+import { TextField, Card, CardActionArea, CardMedia, CardContent } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import Images from '../assets/images/undraw_Business_analytics_64el.svg';
+import SortImage from '../assets/images/complex.svg';
+import SearchImage from '../assets/images/decision-tree.svg';
+import { AlgorithmGroup, Algorithm } from "../types";
+import AlgorithmCard from "../components/AlgorithmCard";
+import AlgorithmSection from "../components/AlgorithmSection";
+import { filterByName } from "../utils/algorithm.util";
 
-const algorithmGroups = [{
+const algorithmGroups: AlgorithmGroup[] = [{
   name: 'Sort algorithm',
   algorithms: [{
-    name: 'Merge Sort'
+    name: 'Merge Sort',
+    imageUrl: SortImage
   }, {
-    name: 'Quick Sort'
+    name: 'Quick Sort',
+    imageUrl: SortImage
   }, {
-    name: 'Bucket Sort'
+    name: 'Bucket Sort',
+    imageUrl: SortImage
   }, {
-    name: 'Heap Sort'
+    name: 'Heap Sort',
+    imageUrl: SortImage
   }]
 },
 {
   name: 'Search algorithm',
   algorithms: [{
-    name: 'Binary Search'
+    name: 'Binary Search',
+    imageUrl: SearchImage
   }, {
-    name: 'Depth/Breadth First Search'
+    name: 'Depth/Breadth First Search',
+    imageUrl: SearchImage
   }]
 }];
 
-export default function Home({ data }: { data: any }) {
-  console.log(data);
-  const renderAlgorithm = (algorithm: { name: string }) => {
-    return (
-      <Card className="w-3/12 bg-white mx-2">
-        <CardActionArea>
-          <CardMedia image={Images}
-          title="Contemplative Reptile" className="h-40"/>
-           <CardContent>
-            <div className="font-semibold"> {algorithm.name}</div>
-           </CardContent>
-        </CardActionArea>
-      </Card>
-    );
-  }
-  const renderAlgorithmGroups = (): ReactNode => {
-    return algorithmGroups.map(algorithmGroup => {
-      return (
-        <section className="mb-10">
-          <h3 className="text-xl font-bold mb-5">{algorithmGroup.name}</h3>
+export default function Index({ data }: { data: any }) {
+  const [text, setText] = useState('');
 
-          <div className="flex flex-row -mx-4">
-            {
-              algorithmGroup.algorithms.map(renderAlgorithm)
-            }
-          </div>
-        </section>
+  const renderAlgorithmGroups = (): ReactNode => {
+    const filteredAlgorithmGroups = algorithmGroups.filter(algorithmGroup => {
+      const algorithms = filterByName(algorithmGroup.algorithms, text, true);
+      return algorithms.length > 0;
+    });
+    return filteredAlgorithmGroups.map((algorithmGroup) => {
+      return (
+        <AlgorithmSection algorithmGroup={algorithmGroup} filterText={text} />
       );
     });
   }
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setText(value);
+  }
+
   return (
     <Layout>
       <Header />
-      <div className="flex items-center py-16 px-10 bg-gray-200 flex-col">
+      <div className="flex items-center py-16 px-10 flex-col">
         <TextField fullWidth variant="outlined"
           placeholder="Search Algorithm"
           className="w-10/12 bg-white"
           InputProps={{
             startAdornment: (<SearchIcon />)
           }}
+          onChange={handleSearchChange}
         />
       </div>
-      <div className="p-10">
+      <div className="px-10">
         <h3 className="text-center mb-10 text-3xl uppercase font-bold">Algorithms</h3>
         {renderAlgorithmGroups()}
       </div >

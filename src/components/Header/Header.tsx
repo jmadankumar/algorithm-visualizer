@@ -2,6 +2,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { AppBar, Toolbar, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import Logo from '../../assets/images/algorithm.svg';
 
 export default function Header() {
     const data = useStaticQuery(graphql`
@@ -16,10 +17,8 @@ export default function Header() {
     return (
         <AppBar position="relative">
             <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="menu">
-                    <MenuIcon />
-                </IconButton>
-                <h2 className="h2">{data.site.siteMetadata.title}</h2>
+                <img src={Logo} alt="logo" className="w-10 h-10 mr-5"/>
+                <h2 className="text-xl">{data.site.siteMetadata.title}</h2>
             </Toolbar>
         </AppBar>
     );
