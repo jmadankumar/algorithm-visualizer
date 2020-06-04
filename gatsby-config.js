@@ -16,10 +16,11 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "src",
-        path: `${__dirname}/src/`,
+        path: `${__dirname}/src/data`,
       },
     },
     "gatsby-transformer-remark",
+    // 'gatsby-transformer-plaintext',
     'gatsby-plugin-top-layout',
     {
       resolve: 'gatsby-plugin-material-ui',

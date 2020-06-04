@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.array-item{
+    transition: 0.5s transform ease-in-out;
+}
+.scaled-1-2x{
+    transform: scale(1.2);
+}
