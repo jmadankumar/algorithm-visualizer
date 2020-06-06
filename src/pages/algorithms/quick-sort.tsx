@@ -1,200 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import Layout from '../../components/Layout';
-import Header from '../../components/Header';
-import { Button } from '@material-ui/core';
-import sleep from '../../lib/sleep';
-import cx from 'classnames';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import { genRandomArray } from '../../utils/array.util';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { graphql } from 'gatsby';
+import React, { useState, useEffect, useMemo } from "react"
+import Layout from "../../components/Layout"
+import Header from "../../components/Header"
+import { graphql } from "gatsby"
+import QuickSortVisualizer from "../../containers/QuickSortVisualizer"
+import CodeIcon from "@material-ui/icons/Code"
+import TimelineIcon from "@material-ui/icons/Timeline"
+import { ButtonGroup, Button } from "@material-ui/core"
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader"
 
 export default function QuickSortPage({ data }: { data: any }) {
-    console.log(data);
-    const [arr, setArray] = useState<number[]>([]);
-    const [currentPivotIndex, setPivotIndex] = useState(-1);
-    const [leftIndex, setLeftIndex] = useState(-1);
-    const [rightIndex, setRightIndex] = useState(-1);
-    const [startedVisualization, setStartedVisualization] = useState(false);
-    const [visualizationCompleted, setVisualizationCompleted] = useState(false);
-    const [swapping, setSwapping] = useState(false);
-    const [swapLeft, setSwapLeft] = useState(-1);
-    const [swapRight, setSwapRight] = useState(-1);
-    const timeout = 1000;
-    const swap = async (arr: Number[], left: number, right: number) => {
-        await sleep(timeout);
-        setSwapping(true);
-        setSwapLeft(left);
-        setSwapRight(right);
-        // Swap Start code
-        const temp = arr[left];
-        arr[left] = arr[right];
-        arr[right] = temp;
-        // Swap Start end
-        await sleep(timeout);
-        setSwapping(false);
-        setSwapLeft(-1);
-        setSwapRight(-1);
-    }
-
-
-    const partition = async (arr: number[], left: number, right: number): Promise<number> => {
-        const pivot = arr[left];
-        const pivotPoint = left;
-
-        setPivotIndex(pivotPoint);
-        setLeftIndex(left);
-        setRightIndex(right);
-        await sleep(timeout);
-
-
-        while (left < right) {
-            while (arr[left] <= pivot) {
-                left++;
-                setLeftIndex(left);
-                await sleep(timeout);
-            }
-            while (arr[right] > pivot) {
-                right--;
-                setRightIndex(right);
-                await sleep(timeout);
-            }
-            if (left < right) {
-                await swap(arr, left, right);
-            }
-        }
-        await swap(arr, pivotPoint, right);
-        return right;
-    }
-
-    const quickSort = async (arr: number[], left: number, right: number) => {
-        if (left < right) {
-            const partitionPoint = await partition(arr, left, right);
-            await quickSort(arr, left, partitionPoint - 1);
-            await quickSort(arr, partitionPoint + 1, right);
-        }
-    }
-
-    const startQuickSort = async () => {
-        setStartedVisualization(true);
-        setVisualizationCompleted(false);
-        //start quicksort
-        await quickSort(arr, 0, arr.length - 1);
-        setArray([...arr]);
-        setStartedVisualization(false);
-        setPivotIndex(-1);
-        setLeftIndex(-1);
-        setRightIndex(-1);
-        setVisualizationCompleted(true);
-        console.log(arr);
-
-    }
-
-    const generateRandomArr = (size: number) => {
-        setVisualizationCompleted(false);
-        const newArray: number[] = genRandomArray(size);
-        console.log(newArray.length);
-        setArray(newArray);
-    }
-
+    console.log(data)
+    const algorithmPath = "/algorithms/quick-sort"
+    const match = useMemo(() => {
+        return data.allMarkdownRemark.edges.find(
+            ({ node }: { node: any }) => algorithmPath === node.fields.slug
+        )
+    }, [data])
+    const [isVisualizerVisible, setVisualizerVisible] = useState(true)
+    const [isCodePreviewVisible, setCodePreviewVisible] = useState(false)
+    console.log(match)
     useEffect(() => {
-        generateRandomArr(10);
-    }, []);
-
+        deckDeckGoHighlightElement()
+    }, [])
     return (
         <Layout>
             <Header />
             <div className="p-10">
-                <div className="flex justify-between">
-                    <h2 className="text-xl font-bold mb-5">
-                        Quick Sort Visualizer
+                <h2 className="text-xl font-bold mb-5">
+                    Quick Sort Visualizer
                 </h2>
-                    <div>
-                        <Button variant="contained" color="secondary" size="small"
-                            onClick={() => generateRandomArr(10)}
-                            className="mr-5"
-                            disabled={startedVisualization}>
-                            Generate Random Array
+                <div>
+                    <ButtonGroup>
+                        <Button
+                            onClick={() => {
+                                setVisualizerVisible(true)
+                                setCodePreviewVisible(false)
+                            }}
+                        >
+                            <TimelineIcon />
                         </Button>
-                        <Button variant="contained" color="primary" size="small"
-                            onClick={() => startQuickSort()}
-                            disabled={startedVisualization}>
-                            Start Visualize
+                        <Button
+                            onClick={() => {
+                                setVisualizerVisible(false)
+                                setCodePreviewVisible(true)
+                            }}
+                        >
+                            <CodeIcon />
                         </Button>
-                    </div>
-                </div>
-                <div className="p-10">
-                    <div className={cx("flex justify-center", { invisible: !swapping })}>
-                        <ArrowBackIcon /> <span className="px-5 font-bold">swapping </span><ArrowForwardIcon />
-                    </div>
-                    <div className="flex justify-center">
-                        {
-                            arr.map((value, index) => {
-                                return (
-                                    <div className={cx("w-10 h-10 flex flex-col justify-center items-center")}
-                                        key={value}>
-                                        {leftIndex === index && (
-                                            <>
-                                                <span>Left</span>
-                                                <ArrowDownwardIcon />
-                                            </>
-                                        )
-                                        }
-                                        {rightIndex === index && (
-                                            <>
-                                                <span>Right</span>
-                                                <ArrowDownwardIcon />
-                                            </>
-                                        )
-                                        }
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                    <div className="flex justify-center">
-                        {
-                            arr.map((value, index) => {
-                                return (
-                                    <div className={cx("w-10 h-10 flex justify-center items-center border border-gray-900 array-item", {
-                                        'bg-purple-600': currentPivotIndex === index,
-                                        'bg-pink-600': leftIndex === index,
-                                        'bg-yellow-600': rightIndex === index,
-                                        'bg-green-600': visualizationCompleted,
-                                        'scaled-1-2x': swapLeft === index || swapRight === index
-                                    })}
-                                        key={value}>
-                                        {value}
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                    <div className="flex justify-center">
-                        {
-                            arr.map((value, index) => {
-                                return (
-                                    <div className={cx("w-10 h-10 flex flex-col justify-center items-center")}
-                                        key={value}>
-                                        {currentPivotIndex === index && (
-                                            <>
-                                                <ArrowUpwardIcon />
-                                                <span>Pivot</span>
-                                            </>
-                                        )
-                                        }
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
+                    </ButtonGroup>
                 </div>
 
+                {isVisualizerVisible && <QuickSortVisualizer />}
+                {isCodePreviewVisible && (
+                    <div
+                        dangerouslySetInnerHTML={{ __html: match.node.html }}
+                    />
+                )}
             </div>
         </Layout>
-    );
+    )
 }
 
 export const query = graphql`
@@ -202,10 +66,12 @@ export const query = graphql`
         allMarkdownRemark {
             edges {
                 node {
-                    excerpt
                     html
                     id
-                    timeToRead
+                    excerpt
+                    fields {
+                        slug
+                    }
                 }
             }
         }

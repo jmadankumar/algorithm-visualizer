@@ -15,6 +15,7 @@
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js"
   },
   "dependencies": {
+    "@deckdeckgo/highlight-code": "^1.1.0",
     "@hot-loader/react-dom": "^16.13.0",
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.9.1",
@@ -22,6 +23,7 @@
     "gatsby": "^2.22.15",
     "gatsby-plugin-material-ui": "^2.1.9",
     "gatsby-plugin-postcss": "^2.3.2",
+    "gatsby-remark-highlight-code": "^1.4.0",
     "gatsby-theme-material-ui": "^1.0.10",
     "gatsby-transformer-plaintext": "^1.0.0",
     "react": "^16.12.0",
