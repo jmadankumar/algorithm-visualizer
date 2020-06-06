@@ -3,6 +3,7 @@
 @tailwind utilities;
 :root {
     --deckgo-highlight-code-font-size : 14px;
+    --deckgo-highlight-code-scroll:hidden;
 }
 
 .array-item{

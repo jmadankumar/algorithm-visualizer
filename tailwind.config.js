@@ -5,6 +5,9 @@ module.exports = {
     backgroundSize: {
       '32': '8rem'
     },
+    inset: {
+      '10px': '10px'
+    }
   },
   variants: {},
   plugins: [],
