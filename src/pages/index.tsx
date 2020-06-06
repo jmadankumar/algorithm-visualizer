@@ -14,26 +14,32 @@ const algorithmGroups: AlgorithmGroup[] = [{
   name: 'Sort algorithm',
   algorithms: [{
     name: 'Merge Sort',
-    imageUrl: SortImage
+    imageUrl: SortImage,
+    url: '/algorithms/merge-sort'
   }, {
     name: 'Quick Sort',
-    imageUrl: SortImage
+    imageUrl: SortImage,
+    url: '/algorithms/quick-sort'
   }, {
     name: 'Bucket Sort',
-    imageUrl: SortImage
+    imageUrl: SortImage,
+    url: '/algorithms/bucket-sort'
   }, {
     name: 'Heap Sort',
-    imageUrl: SortImage
+    imageUrl: SortImage,
+    url: '/algorithms/heap-sort'
   }]
 },
 {
   name: 'Search algorithm',
   algorithms: [{
     name: 'Binary Search',
-    imageUrl: SearchImage
+    imageUrl: SearchImage,
+    url: '/algorithms/merge-sort'
   }, {
     name: 'Depth/Breadth First Search',
-    imageUrl: SearchImage
+    imageUrl: SearchImage,
+    url: '/algorithms/merge-sort'
   }]
 }];
 

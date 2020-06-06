@@ -40,11 +40,3 @@ startSorting(array);
 const array1 = [6, 3, 100, 2, 9, 10, 5];
 startSorting(array1);
 ```
-
-```java
-class QuickSort(){
-    public static void main(String[] args){
-        System.out.println('I\'m Java');
-    }
-}
-```

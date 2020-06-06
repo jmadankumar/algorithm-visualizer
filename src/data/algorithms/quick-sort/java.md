@@ -1,7 +1,3 @@
-```js
-console.log('js');
-```
-
 ```java
 class QuickSort(){
     public static void main(String[] args){

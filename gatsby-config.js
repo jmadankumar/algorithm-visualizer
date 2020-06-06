@@ -20,14 +20,15 @@ module.exports = {
       },
     },
     {
-      resolve:'gatsby-transformer-remark',
-      options:{
-        plugins:[
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
           {
-            resolve:'gatsby-remark-highlight-code',
-            options:{
-              terminal:'carbon',
-              theme:'blackboard'
+            resolve: 'gatsby-remark-highlight-code',
+            options: {
+              terminal: 'carbon',
+              theme: 'dracula',
+              lineNumbers: true
             }
           }
         ]

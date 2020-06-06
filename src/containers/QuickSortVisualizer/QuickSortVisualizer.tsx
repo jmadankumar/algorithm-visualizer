@@ -102,7 +102,7 @@ export default function QuickSortVisualizer() {
 
     return (
         <div>
-            <div className="flex justify-end">
+            <div className="flex justify-start">
                 <Button
                     variant="contained"
                     color="secondary"
@@ -124,7 +124,7 @@ export default function QuickSortVisualizer() {
                 </Button>
             </div>
 
-            <div className="p-10">
+            <div className="">
                 <div
                     className={cx("flex justify-center", {
                         invisible: !swapping,

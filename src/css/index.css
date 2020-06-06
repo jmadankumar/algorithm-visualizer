@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+:root {
+    --deckgo-highlight-code-font-size : 14px;
+}
 
 .array-item{
     transition: 0.5s transform ease-in-out;
