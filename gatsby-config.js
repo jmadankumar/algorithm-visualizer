@@ -34,7 +34,6 @@ module.exports = {
         ]
       }
     },
-    // 'gatsby-transformer-plaintext',
     'gatsby-plugin-top-layout',
     {
       resolve: 'gatsby-plugin-material-ui',

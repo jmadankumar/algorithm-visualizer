@@ -25,7 +25,6 @@
     "gatsby-plugin-postcss": "^2.3.2",
     "gatsby-remark-highlight-code": "^1.4.0",
     "gatsby-theme-material-ui": "^1.0.10",
-    "gatsby-transformer-plaintext": "^1.0.0",
     "react": "^16.12.0",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.12.0"

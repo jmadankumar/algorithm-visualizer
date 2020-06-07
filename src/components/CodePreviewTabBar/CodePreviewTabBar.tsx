@@ -21,7 +21,7 @@ export default function CodePreviewTabBar({
                         <Button
                             onClick={() => onChange?.(tab)}
                             className={cx({
-                                'bg-gray-400': activeTab === tab,
+                                'bg-blue-300': activeTab === tab,
                             })}
                             key={tab}
                         >
