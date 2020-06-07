@@ -18,7 +18,7 @@ export default function SortVisualizerPageCreator({
     const [activeTab, setActiveTab] = useState(0);
     const handleTabChange = (index: number) => setActiveTab(index);
     return (
-        <div className="p-10">
+        <div className="p-5 md:p-10">
             <div className="flex justify-between mb-5">
                 <h2 className="text-2xl font-bold ">
                     {title}
@@ -26,7 +26,7 @@ export default function SortVisualizerPageCreator({
                 <VisualizerTabBar activeTab={activeTab} onChange={handleTabChange} />
             </div>
             <Card>
-                <CardContent>
+                <CardContent className="overflow-x-auto">
                     {activeTab === 0 && visualizerComponent}
                     {activeTab === 1 && (
                         <CodePreviewTabView

@@ -5,43 +5,64 @@ import { TextField, Card, CardActionArea, CardMedia, CardContent } from '@materi
 import SearchIcon from '@material-ui/icons/Search';
 import SortImage from '../assets/images/complex.svg';
 import SearchImage from '../assets/images/decision-tree.svg';
+import FitImage from '../assets/images/fit.svg';
 import { AlgorithmGroup, Algorithm } from "../types";
 import AlgorithmCard from "../components/AlgorithmCard";
 import AlgorithmSection from "../components/AlgorithmSection";
 import { filterByName } from "../utils/algorithm.util";
 
-const algorithmGroups: AlgorithmGroup[] = [{
-  name: 'Sort algorithm',
-  algorithms: [{
-    name: 'Merge Sort',
-    imageUrl: SortImage,
-    url: '/algorithms/merge-sort'
+const algorithmGroups: AlgorithmGroup[] = [
+  {
+    name: 'Data structure',
+    algorithms: [{
+      name: 'Linked List',
+      imageUrl: FitImage,
+      url: '/data-structure/linked-list'
+    }, {
+      name: 'Stack',
+      imageUrl: FitImage,
+      url: '/data-structure/stack'
+    }, {
+      name: 'Queue',
+      imageUrl: FitImage,
+      url: '/data-structure/queue'
+    }, {
+      name: 'Doubly Linked List',
+      imageUrl: FitImage,
+      url: '/data-structure/doubly-linked-list'
+    }]
   }, {
-    name: 'Quick Sort',
-    imageUrl: SortImage,
-    url: '/algorithms/quick-sort'
-  }, {
-    name: 'Bucket Sort',
-    imageUrl: SortImage,
-    url: '/algorithms/bucket-sort'
-  }, {
-    name: 'Heap Sort',
-    imageUrl: SortImage,
-    url: '/algorithms/heap-sort'
-  }]
-},
-{
-  name: 'Search algorithm',
-  algorithms: [{
-    name: 'Binary Search',
-    imageUrl: SearchImage,
-    url: '/algorithms/merge-sort'
-  }, {
-    name: 'Depth/Breadth First Search',
-    imageUrl: SearchImage,
-    url: '/algorithms/merge-sort'
-  }]
-}];
+    name: 'Sort algorithm',
+    algorithms: [{
+      name: 'Merge Sort',
+      imageUrl: SortImage,
+      url: '/algorithms/merge-sort'
+    }, {
+      name: 'Quick Sort',
+      imageUrl: SortImage,
+      url: '/algorithms/quick-sort'
+    }, {
+      name: 'Bucket Sort',
+      imageUrl: SortImage,
+      url: '/algorithms/bucket-sort'
+    }, {
+      name: 'Heap Sort',
+      imageUrl: SortImage,
+      url: '/algorithms/heap-sort'
+    }]
+  },
+  {
+    name: 'Search algorithm',
+    algorithms: [{
+      name: 'Binary Search',
+      imageUrl: SearchImage,
+      url: '/algorithms/merge-sort'
+    }, {
+      name: 'Depth/Breadth First Search',
+      imageUrl: SearchImage,
+      url: '/algorithms/merge-sort'
+    }]
+  }];
 
 export default function Index({ data }: { data: any }) {
   const [text, setText] = useState('');
@@ -66,18 +87,19 @@ export default function Index({ data }: { data: any }) {
   return (
     <Layout>
       <Header />
-      <div className="flex items-center py-16 px-10 flex-col">
-        <TextField fullWidth variant="outlined"
-          placeholder="Search Algorithm"
-          className="w-10/12 bg-white"
-          InputProps={{
-            startAdornment: (<SearchIcon />)
-          }}
-          onChange={handleSearchChange}
-        />
-      </div>
-      <div className="px-10">
-        <h3 className="text-center mb-10 text-3xl uppercase font-bold">Algorithms</h3>
+      <div className="p-10">
+        <h3 className="text-center text-3xl uppercase font-bold">Data Structrue & Algorithms</h3>
+        <div className="flex items-center py-8 flex-col mb-5">
+          <TextField fullWidth variant="outlined"
+            placeholder="Search Algorithm"
+            className="w-8/12 bg-white"
+            InputProps={{
+              startAdornment: (<SearchIcon />)
+            }}
+            onChange={handleSearchChange}
+          />
+        </div>
+
         {renderAlgorithmGroups()}
       </div >
     </Layout >

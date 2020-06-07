@@ -36,7 +36,7 @@ export default function MergeSortVisualizer() {
         if (tree.children && tree.children.right) {
             tree.children.right.pointer = rightIndex;
         }
-        setTree({...treeHead});
+        setTree({ ...treeHead });
         await sleep(timeout);
     }
     const merge = async (arr: number[], leftArr: number[], leftSize: number, rightArr: number[], rightSize: number,
@@ -135,15 +135,19 @@ export default function MergeSortVisualizer() {
             <div>
                 <div className="flex flex-row justify-center items-center">
                     {
-                        values.map(value => (
-                            <div className="w-8 h-8 flex justify-center items-center border border-gray-400">{value}</div>
+                        values.map((value, index) => (
+                            <div className={cx("w-10 h-10 flex justify-center items-center border border-gray-900", {
+                                'bg-yellow-600': index === pointer
+                            })}
+                            >{value}
+                            </div>
                         ))
                     }
                 </div>
                 <div className="flex flex-row justify-center items-center mb-5">
                     {
                         values.map((value, index) => (
-                            <div className="w-8 h-8 flex justify-center items-center">
+                            <div className="w-10 h-10 flex justify-center items-center">
                                 {index === pointer && <ArrowUpwardIcon />}
                             </div>
                         ))
