@@ -1,6 +1,4 @@
-interface CodeProps {
-    [props: string]: string
-}
+import { CodeProps } from '../types'
 
 export const getMarkdownCodeSnippets = (data: any, algorithmPath: string) => {
     return data.allMarkdownRemark.edges.reduce((result: any, { node }: {
