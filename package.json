@@ -12,7 +12,11 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js"
+    "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js",
+    "gh-page:deploy": "gh-pages -d public -b master -r https://github.com/ds-algorithm-visualizer/ds-algorithm-visualizer.github.io.git",
+    "gh-page-clean": "gh-pages-clean",
+    "copy":"copyfiles .nojekyll ./public",
+    "deploy":"gatsby build && npm run copy && npm run gh-page:deploy"
   },
   "dependencies": {
     "@deckdeckgo/highlight-code": "^1.1.0",
@@ -20,11 +24,13 @@
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.9.1",
     "classnames": "^2.2.6",
+    "copyfiles": "^2.3.0",
     "gatsby": "^2.22.15",
     "gatsby-plugin-material-ui": "^2.1.9",
     "gatsby-plugin-postcss": "^2.3.2",
     "gatsby-remark-highlight-code": "^1.4.0",
     "gatsby-theme-material-ui": "^1.0.10",
+    "gh-pages": "^2.2.0",
     "react": "^16.12.0",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.12.0"
